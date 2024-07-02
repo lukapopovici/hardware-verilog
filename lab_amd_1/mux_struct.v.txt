@@ -8,13 +8,10 @@ module mux2to1_structural #(parameter WIDTH = 8) (
     wire [WIDTH-1:0] and_a;
     wire [WIDTH-1:0] and_b;
 
-    genvar i;
-    generate
-        for (i = 0; i < WIDTH; i = i + 1) begin : gen_mux
-            not u1 (not_sel[i], sel);
-            and u2 (and_a[i], a[i], not_sel[i]);
-            and u3 (and_b[i], b[i], sel);
-            or u4 (y[i], and_a[i], and_b[i]);
-        end
-    endgenerate
+    assign not_sel = {WIDTH{~sel}};
+    assign and_a = a & not_sel;
+    assign and_b = b & {WIDTH{sel}};
+    assign y = and_a | and_b;
+
 endmodule
+
