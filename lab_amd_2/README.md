@@ -1,5 +1,10 @@
 # Behavioral ALU written in Verilog
 
+### Simulation:
+
+![Screenshot 2024-07-02 122528](https://github.com/lukapopovici/hardware-verilog/assets/128390767/3bb1775e-17ab-4eae-a79c-0eedeaa34253)
+
+
 ### Operands are assumed to be unsigned!
 
 Functionality:
