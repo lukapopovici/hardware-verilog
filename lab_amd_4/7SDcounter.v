@@ -46,11 +46,11 @@ endmodule
 module dec2to4(input [1:0] IN, output reg [3:0] OUT);
 always @(*) begin
         case (IN)
-        2'b00: OUT=0001; //0
-        2'b01: OUT=0010; //1
-        2'b10: OUT=0100;  //2
-        2'b11: OUT=1000;  //3
-        default: OUT=1111;
+        2'b00: OUT=4'b0001; //0
+        2'b01: OUT=4'b0010; //1
+        2'b10: OUT=4'b0100;  //2
+        2'b11: OUT=4'b1000;  //3
+        default: OUT=4'b1111;
               
         endcase
 end
