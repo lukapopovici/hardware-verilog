@@ -18,35 +18,33 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
+
+
+
 module rom (
     input clk,
     input enable,
     output [31:0] data
 );
-    reg [7:0] address; 
+    reg [7:0] address = 0; // Initialize address to 0
     reg [31:0] rom [99:0];  
 
     integer i;
     initial begin
-        rom[0] = 32'h00100100;
-        rom[1] = 32'h00100100;
-        rom[2] = 32'h00100100;
-        rom[3] = 32'h00100100;
-        rom[4] = 32'h00100100;
-        for (i = 1; i < 99; i = i + 1) begin
-            rom[i] = 0;
+        for (i = 0; i <= 99; i = i + 1) begin
+           rom[i] = 32'h00_100_100;
         end
     end
 
-    always @(posedge clk ) begin
-         if (enable)
+    always @(posedge clk) begin
+         if (enable) begin
             address <= address + 1;
+         end
      end
 
     assign data = rom[address];
 
 endmodule
-
 
 module DIV(input clk,output reg out = 0);
      reg [15:0] curr = 0;
@@ -263,6 +261,6 @@ end
 
 initial begin
 enable=1;b1=0;b2=0;b3=0;
-#40 $finish;
+#60 $finish;
 end
 endmodule
