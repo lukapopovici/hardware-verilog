@@ -1,26 +1,23 @@
 module rom (
     input clk,
-    input reset,
     input enable,
     output [31:0] data
 );
-    reg [7:0] address; 
+    reg [7:0] address = 0;
     reg [31:0] rom [99:0];  
 
     integer i;
     initial begin
-        rom[0] = 32'h00000001;
-        for (i = 1; i < 99; i = i + 1) begin
-            rom[i] = 0;
+        for (i = 0; i <= 99; i = i + 1) begin
+           rom[i] = 32'h00_100_100;
         end
     end
 
-    always @(posedge clk or posedge reset) begin
-        if (reset)
-            address <= 0;
-        else if (enable)
+    always @(posedge clk) begin
+         if (enable) begin
             address <= address + 1;
-    end
+         end
+     end
 
     assign data = rom[address];
 
