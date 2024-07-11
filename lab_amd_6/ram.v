@@ -20,24 +20,27 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module ram(
-    input [7:0] addr,
+    input [6:0] addr,  
     input clk,
     input rw,
     input [31:0] din,
     output reg [31:0] OUT
 );
 
-    reg [31:0] internal_mem [7:0];
+    reg [31:0] internal_mem [99:0];  
+    parameter ERR_CODE = 32'hDEAD;  
 
     integer i;
     initial begin
-        for (i = 0; i < 8; i = i + 1) begin
+        for (i = 0; i < 100; i = i + 1) begin
             internal_mem[i] = 0;
         end
     end
 
     always @(posedge clk) begin
-        if (rw == 0) begin
+        if (addr > 99) begin
+            OUT <= ERR_CODE;  
+        end else if (rw == 0) begin
             OUT <= internal_mem[addr];
         end else begin
             internal_mem[addr] <= din;
@@ -48,8 +51,8 @@ module ram(
 endmodule
 
 
-module ram_tb;
-    reg [7:0] addr;
+module tb;
+    reg [6:0] addr;
     reg clk;
     reg rw;
     reg [31:0] din;
@@ -77,6 +80,8 @@ module ram_tb;
         addr = 2; din = 32'h55667788; rw = 0; #10;
         addr = 3; din = 32'h99AABBCC; rw = 1; #10;
 
+        addr = 100; rw = 0; #10;
+
         #10;
         addr = 0; rw = 0; #10;
         addr = 1; rw = 0; #10;
@@ -88,4 +93,3 @@ module ram_tb;
     end
 
 endmodule
-
