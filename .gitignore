@@ -1,0 +1,84 @@
+# Xilinx Vivado generated files and directories
+
+# Vivado project files
+*.data
+*.jou
+*.log
+*.str
+*.bin
+*.rpt
+*.html
+*.xml
+
+# Vivado specific directories
+*.cache/
+*.hw/
+*.ip_user_files/
+*.runs/
+*.sim/
+*.srcs/
+*.xpr
+*.xpr.lock
+*.sdk/
+
+# Simulation files
+*.wdb
+*.vcd
+*.vpd
+*.xsim/
+*.waveform/
+
+# Bitstream files
+*.bit
+*.mcs
+*.prm
+*.mem
+*.tcl
+
+# Temporary files
+*.tmp
+*.temp
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Backup files
+*.bak
+*.swp
+*.swo
+*.tmp
+~$*
+
+# Logs and Reports
+*.log
+*.rpt
+*.bxml
+*.summary
+
+# Constraints and Checkpoint files
+*.dcp
+*.xdc
+*.sdc
+
+# Generated Source files
+*.gen
+
+# Vivado HLS files
+*.Ilog
+*.Iprj/
+*.Ipprj/
+*.Ipuser/
+*.Iwave/
+
+# Other IDE and Editor files
+.idea/
+.vscode/
+*.code-workspace
+
+# Exclude the specific source directories (adjust as needed)
+!/src/
+!/src/**/*.v
+!/src/**/*.sv
+!/src/**/*.vh
+!/src/**/*.svh
