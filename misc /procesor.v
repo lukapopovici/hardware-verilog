@@ -122,9 +122,10 @@ module extsign(input extop,input [15:0] original, output reg [31:0] out);
 endmodule
 
 
-module main_control();
+module main_control(input Zero, input [5:0] opcode,input [5:0] func, output reg alusrc, extop , regdst, regwrite, memwrite, mem2reg, aluop);
 
 endmodule
+
 module toplevel();
         reg clk;
         wire [31:0] instruction;
