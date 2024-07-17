@@ -18,16 +18,16 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
-module Instr_Mem(input [31:0] addr, output  [31:0] instr);
-    reg [7:0] instructions [99:0];
+module Instr_Mem(
+    input [31:0] addr,
+    output [31:0] instr
+);
+    reg [7:0] instructions [0:399]; 
 
     initial begin
-       $readmemh("instr.mem", instructions);
-        
+        $readmemh("instr.mem", instructions);
     end
 
-        assign instr[31:24] = instructions[addr];
-        assign instr [23:16] = instructions[addr+1];
-        assign instr [15:8] = instructions[addr+2];
-        assign instr[7:0] = instructions[addr+3];
+    assign instr = {instructions[addr], instructions[addr+1], instructions[addr+2], instructions[addr+3]};
+
 endmodule

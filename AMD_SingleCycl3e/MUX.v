@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 16.07.2024 11:17:47
+// Create Date: 07/16/2024 04:00:24 PM
 // Design Name: 
-// Module Name: IM
+// Module Name: MUX
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,7 +20,16 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module IM(
-
-    );
+module MUX #(parameter SIZE = 5) (
+    input [SIZE-1:0] op1,
+    input [SIZE-1:0] op2,
+    input sig,
+    output reg [SIZE-1:0] out
+);
+    always @(*) begin
+        if (sig)
+            out = op1;
+        else
+            out = op2;
+    end
 endmodule
