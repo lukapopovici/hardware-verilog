@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 16.07.2024 11:17:47
+// Create Date: 07/18/2024 02:55:52 AM
 // Design Name: 
-// Module Name: IM
+// Module Name: shifter
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module IM(
-
+module shifter#(parameter SIZE=32,parameter SHIFTVAL=2)(
+        
     );
 endmodule

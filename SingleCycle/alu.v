@@ -3,7 +3,7 @@ module ALU #(parameter SIZE = 32) (
     input [SIZE-1:0] rd2, 
     input [3:0] op, 
     output reg [SIZE-1:0] rez, 
-    output reg zero
+    output zero
 );
     always @(*) begin
         case (op)
@@ -15,6 +15,7 @@ module ALU #(parameter SIZE = 32) (
             4'b1100: rez = ~(rd1 | rd2);
             default: rez = 0; 
         endcase
-        zero = (rez == 0);
     end
+       assign zero = (rez == 0);
+
 endmodule

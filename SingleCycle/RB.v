@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 07/16/2024 03:56:17 PM
+// Create Date: 07/16/2024 04:02:21 PM
 // Design Name: 
-// Module Name: dm
+// Module Name: RB
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,25 +20,31 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
+module register_bank(
+    input clk,
+    input regwrite,
+    input [4:0] ra1,
+    input [4:0] ra2,
+    input [4:0] wa,
+    input [31:0] wd,
+    output [31:0] rd1,
+    output [31:0] rd2
+);
 
-module DM(input clk, input memwrite, input [31:0] addr, input [31:0] wd, output reg [31:0] rd);
-    reg [31:0] internal_mem [99:0];
-    parameter ERR_CODE = 32'hDEAD;
+    reg [31:0] registers [0:31];
 
-    integer i;
     initial begin
-        for (i = 0; i < 100; i = i + 1) begin
-            internal_mem[i] = 0;
-        end
+        $readmemb("reg.mem", registers);
     end
+
+    assign rd1 = registers[ra1];
+    assign rd2 = registers[ra2];
 
     always @(posedge clk) begin
-        if (memwrite) begin
-            internal_mem[addr] <= wd;
+        if (regwrite == 1) begin
+            registers[wa] <= wd;  
         end
     end
 
-    always @(*) begin
-        rd = internal_mem[addr];
-    end
 endmodule
+

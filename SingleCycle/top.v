@@ -17,6 +17,8 @@ module toplevel();
     wire mem2reg;
     wire memwrite;
     wire regwrite;
+    wire jump;
+    wire branch;
     wire Zero;
     wire [31:0] rd;
     wire [31:0] extout;
@@ -28,7 +30,6 @@ module toplevel();
         .clk(clk)
     );
 
-    // PC module
     PC pc (
         .clk(clk),
         .addr(address),
@@ -54,6 +55,7 @@ module toplevel();
         .ra2(instruction[20:16]),
         .wa(wa),
         .wd(rd),
+        .clk(clk),
         .rd1(rd1),
         .rd2(rd2)
     );
@@ -89,19 +91,21 @@ module toplevel();
         .regwrite(regwrite),
         .memwrite(memwrite),
         .mem2reg(mem2reg),
-        .aluop(aluop)
+        .aluop(aluop),
+        .jump(jump),
+        .branch(branch)
     );
 
     MUX #(.SIZE(32)) alusrc_mux (
-        .op1(rd2),
-        .op2(extout),
+        .op1(extout),
+        .op2(rd2),
         .sig(alusrc),
         .out(rd2_alu)
     );
 
     MUX #(.SIZE(32)) mem2reg_mux (
-        .op1(rd_dm),
-        .op2(alu_rez),
+        .op1(alu_rez),
+        .op2(rd_dm),
         .sig(mem2reg),
         .out(rd)
     );
@@ -125,4 +129,3 @@ module toplevel();
         #200 $finish;
     end
 endmodule
-
