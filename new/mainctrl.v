@@ -79,7 +79,7 @@ module main_control(
                 extop = 1'b1;
                 branch= 1'b1;
                 jump=1'b0;
-                aluop = 4'b1111; // errcode
+                aluop = 4'b0110;// errcode
             end
             
             6'b000010: begin // JMP

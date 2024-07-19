@@ -1,3 +1,12 @@
+
+module shifter#(parameter SIZE=26,parameter SHIFTVAL=2)(
+         input [SIZE-1:0] in, output [SIZE-1:0] out
+    );
+    
+    assign out=in<<SHIFTVAL;
+endmodule
+
+
 module toplevel();
     reg clk;
     wire [31:0] instruction;
