@@ -45,7 +45,7 @@
 
 
 module DM(input clk, input memwrite, input [31:0] addr, input [31:0] wd, output [31:0] rd);
-    reg [31:0] internal_mem [99:0];
+    reg [31:0] internal_mem [0:99];
     parameter ERR_CODE = 32'hDEAD;
 
     integer i;

@@ -58,6 +58,7 @@ module toplevel();
         .ra1(instruction[25:21]),
         .ra2(instruction[20:16]),
         .wa(wa),
+        .swap(swap),
         .wd(rd),
         .clk(clk),
         .rd1(rd1),
