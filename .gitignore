@@ -32,7 +32,6 @@
 *.bit
 *.mcs
 *.prm
-*.mem
 *.tcl
 
 # Temporary files
