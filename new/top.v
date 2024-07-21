@@ -1,14 +1,4 @@
-
-module shifter#(parameter SIZE=26,parameter SHIFTVAL=2)(
-         input [SIZE-1:0] in, output [SIZE-1:0] out
-    );
-    
-    assign out=in<<SHIFTVAL;
-endmodule
-
-
-module toplevel();
-    reg clk;
+module toplevel(input clk);
     wire [31:0] instruction;
     wire [31:0] adder_pc_in;
     wire [31:0] address;
@@ -161,15 +151,4 @@ module toplevel();
         .out(B1_Mux_Out)
     );  
         
-    initial begin 
-        clk = 0;
-        forever begin
-            #5 clk = ~clk;
-        end
-    end
-    
-    initial begin 
-       
-        #200 $finish;
-    end
 endmodule
