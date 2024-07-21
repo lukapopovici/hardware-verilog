@@ -1,0 +1,1 @@
+Implementation of an ALU unit that reads instruction from a simulated ROM unit and outputs the result of said instruction to a 7 segment display.

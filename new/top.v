@@ -31,7 +31,7 @@ module toplevel();
     wire [31:0] rd;
     wire [31:0] extout;
     wire [4:0] wa;
-
+    wire swap;
    
 
     PC pc (
@@ -97,6 +97,7 @@ module toplevel();
         .mem2reg(mem2reg),
         .aluop(aluop),
         .jump(jump),
+        .swap(swap),
         .branch(branch)
     );
 

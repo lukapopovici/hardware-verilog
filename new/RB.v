@@ -23,6 +23,7 @@
 module register_bank(
     input clk,
     input regwrite,
+    input swap,
     input [4:0] ra1,
     input [4:0] ra2,
     input [4:0] wa,
@@ -32,7 +33,7 @@ module register_bank(
 );
 
     reg [31:0] registers [0:31];
-
+    reg [31:0] AUX;
     initial begin
         $readmemb("reg.mem", registers);
     end
@@ -43,6 +44,12 @@ module register_bank(
     always @(posedge clk) begin
         if (regwrite == 1) begin
             registers[wa] <= wd;  
+        end
+        
+        if (swap == 1) begin
+            AUX=registers[ra1];
+            registers[ra1]=registers[ra2];
+            registers[ra2]=AUX;
         end
     end
 

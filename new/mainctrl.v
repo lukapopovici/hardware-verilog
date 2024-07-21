@@ -10,6 +10,7 @@ module main_control(
     output reg mem2reg,
     output reg branch,
     output reg jump,
+    output reg swap,
     output reg [3:0] aluop
 );
 
@@ -22,10 +23,24 @@ module main_control(
                 extop -> extind semnul pt modul
                 branch -> activez branch
                 jump -> activez jump
+                swap -> semnal pt instructiune custom de swap intre registre
 */
 
     always @(*) begin
         case (opcode)
+            6'b100000: begin // RSWP
+                regdst = 1'b0;
+                alusrc = 1'b0;
+                memwrite = 1'b0;
+                mem2reg = 1'b0;
+                regwrite = 1'b0;
+                extop = 1'b0;
+                branch= 1'b0;
+                jump=1'b0;
+                swap=1'b1;
+                aluop = 4'b1111; // errcode
+            end
+        
             6'b000000: begin // R-type instructions
                 regdst = 1'b1;
                 alusrc = 1'b0;
@@ -35,6 +50,7 @@ module main_control(
                 extop = 1'b0;
                 branch= 1'b0;
                 jump=1'b0;
+                swap=1'b0;
 
                 case (func)
                     6'b100000: aluop = 4'b0010; // ADD
@@ -56,6 +72,7 @@ module main_control(
                 aluop = 4'b0010; // ADD
                 branch= 1'b0;
                 jump=1'b0;
+                swap=1'b0;
             end
 
             6'b101011: begin // SW
@@ -66,6 +83,7 @@ module main_control(
                 regwrite = 1'b0;
                 extop = 1'b1;
                 branch= 1'b0;
+                swap=1'b0;
                 jump=1'b0;
                 aluop = 4'b0010; // ADD
             end
@@ -78,6 +96,7 @@ module main_control(
                 regwrite = 1'b0;
                 extop = 1'b1;
                 branch= 1'b1;
+                swap=1'b0;
                 jump=1'b0;
                 aluop = 4'b0110;// errcode
             end
@@ -88,6 +107,7 @@ module main_control(
                 memwrite = 1'b0;
                 mem2reg = 1'b0;
                 regwrite = 1'b0;
+                swap=1'b0;
                 extop = 1'b1;
                 branch= 1'b0;
                 jump=1'b1;
@@ -98,6 +118,7 @@ module main_control(
                 regdst = 1'b0;
                 alusrc = 1'b0;
                 memwrite = 1'b0;
+                swap=1'b0;
                 mem2reg = 1'b0;
                 regwrite = 1'b0;
                 extop = 1'b0;
