@@ -15,15 +15,15 @@ module main_control(
 );
 
 /*
-                regdst -> destinatia e un registru
-                alusrc -> selectez pentru alu daca e val immediate sau e registru, caz in cae il iau din register bank
-                memwrite -> scriere in DM
-                mem2reg -> scriu din memorie in Register Bank
-                regwrite -> Scriu in registru
-                extop -> extind semnul pt modul
-                branch -> activez branch
-                jump -> activez jump
-                swap -> semnal pt instructiune custom de swap intre registre
+                regdst -> destination is a register
+                alusrc -> select for ALU if it's immediate value or register value, in which case it takes from register bank
+                memwrite -> writing to DM
+                mem2reg -> write from memory to Register Bank
+                regwrite -> Write to register
+                extop -> sign extend for immediate values
+                branch -> activate branch
+                jump -> activate jump
+                swap -> signal for custom swap instruction between registers
 */
 
     always @(*) begin
@@ -98,7 +98,7 @@ module main_control(
                 branch= 1'b1;
                 swap=1'b0;
                 jump=1'b0;
-                aluop = 4'b0110;// errcode
+                aluop = 4'b0110;// SUB
             end
             
             6'b000010: begin // JMP
@@ -114,7 +114,46 @@ module main_control(
                 aluop = 4'b1111; // errcode
             end
 
-            default: begin // cmd invalida
+            6'b001000: begin // ADDI
+                regdst = 1'b0;
+                alusrc = 1'b1;
+                memwrite = 1'b0;
+                mem2reg = 1'b0;
+                regwrite = 1'b1;
+                extop = 1'b1;
+                branch= 1'b0;
+                swap=1'b0;
+                jump=1'b0;
+                aluop = 4'b0010; // ADD
+            end
+            
+            6'b001100: begin // ANDI
+                regdst = 1'b0;
+                alusrc = 1'b1;
+                memwrite = 1'b0;
+                mem2reg = 1'b0;
+                regwrite = 1'b1;
+                extop = 1'b0;
+                branch= 1'b0;
+                swap=1'b0;
+                jump=1'b0;
+                aluop = 4'b0000; // AND
+            end
+            
+            6'b001101: begin // ORI
+                regdst = 1'b0;
+                alusrc = 1'b1;
+                memwrite = 1'b0;
+                mem2reg = 1'b0;
+                regwrite = 1'b1;
+                extop = 1'b0;
+                branch= 1'b0;
+                swap=1'b0;
+                jump=1'b0;
+                aluop = 4'b0001; // OR
+            end
+
+            default: begin // invalid command
                 regdst = 1'b0;
                 alusrc = 1'b0;
                 memwrite = 1'b0;
@@ -122,6 +161,8 @@ module main_control(
                 mem2reg = 1'b0;
                 regwrite = 1'b0;
                 extop = 1'b0;
+                branch=1'b0;
+                jump=1'b0;
                 aluop = 4'b1111;
             end
         endcase

@@ -54,4 +54,3 @@ module register_bank(
     end
 
 endmodule
-

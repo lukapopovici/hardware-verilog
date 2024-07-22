@@ -21,29 +21,6 @@
 
 
 
-`timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 07/16/2024 03:56:17 PM
-// Design Name: 
-// Module Name: dm
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
-
-
 module DM(input clk, input memwrite, input [31:0] addr, input [31:0] wd, output [31:0] rd);
     reg [31:0] internal_mem [0:99];
     parameter ERR_CODE = 32'hDEAD;

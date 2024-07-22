@@ -1,8 +1,10 @@
+`timescale 1ns / 1ps
+
 module tb();
 
     reg clk;
     
-    toplevel uut (.clk(clk)); 
+    toplevel uut (.clk(clk));  
 
     initial begin
         clk = 0;

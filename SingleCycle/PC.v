@@ -28,4 +28,3 @@ module PC(input clk, output reg [31:0] addr, input [31:0] in);
         addr <= in;
     end
 endmodule
-
