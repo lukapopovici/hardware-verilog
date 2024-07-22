@@ -51,12 +51,16 @@ Bancul de registre e definit in modulul RB si sunt initializate cu valoarea 0, d
 - **Custom:**  
   - RSWP
  
-  ### RSWP
+### RSWP
 
-  Register swap. O instructiune custom care ia ca argumente 2 registre in fieldurile de dupa opcode si le interchimba valoare intr-un singur ciclu.
+Register swap. O instructiune custom care ia ca argumente 2 registre in fieldurile de dupa opcode si le interchimba valoare intr-un singur ciclu.
 
 
 ![image](https://github.com/user-attachments/assets/6387d26e-3bc2-4c4c-bab7-a03671b8a5b7)
+
+OPCODE: 100000
+
+Registrele destinate swapului sunt date in urmatorii 10 biti. Restul pot avea val X.
 
 Exemplu de utilizare swap intre registrul 1 si 2.
 
