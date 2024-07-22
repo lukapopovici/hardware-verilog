@@ -1,18 +1,18 @@
 module tb();
-    
-    reg clk;
 
-    toplevel(clk)
-    initial begin 
+    reg clk;
+    
+    toplevel uut (.clk(clk)); 
+
+    initial begin
         clk = 0;
         forever begin
             #5 clk = ~clk;
         end
     end
-    
-    initial begin 
-       
+
+    initial begin
         #200 $finish;
     end
-    
+
 endmodule
