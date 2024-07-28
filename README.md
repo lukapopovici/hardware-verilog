@@ -6,13 +6,18 @@
 
 # Procesor MIPS Single-Cycle
 
+[Aici](https://github.com/lukapopovici/hardware-verilog/tree/main/SingleCycle) poate fi gasita implementarea unui procesor MIPS single-cycle in Verilog. 
+
+
 ### Schema:
 ![image](https://github.com/user-attachments/assets/77c247d3-f416-4c5c-bc4b-4ff94cec89c3)
 
-### Testbench:
-Instructiunile sunt codificate pe 32 de biti, fiecare pe 4 linii.Acestea sunt incarcate in fisierul instr.mem.
+*Semnalul MemRead nu este implementat
 
-### Program: 
+### Testbench:
+Instructiunile sunt codificate pe 32 de biti, fiecare stocata pe 4 linii in fisierul instr.mem, de unde sunt incarcate.
+
+### Program (assembly) : 
 
 ```
 begin:
@@ -24,6 +29,26 @@ begin:
   jmp begin
 ```
 
+### Program (binary) :
+
+```
+00000000_00000000_00000000_00000000
+
+00000000_00000000_00000000_00000000
+
+00000000_00100001_00010000_00100000
+
+10101100_01000001_00000000_00000010
+
+10001100_00100011_00000000_00000000
+
+10000000_00100010_00000000_00000000
+
+00001000_00000000_00000000_00000000
+
+```
+
+
 ### Registrele
 
 Bancul de registre e definit in modulul RB si sunt initializate cu valoarea 0, din fisierul register.mem. 
@@ -34,20 +59,24 @@ Bancul de registre e definit in modulul RB si sunt initializate cu valoarea 0, d
   - ADDI
   - ANDI
   - ORI
+ 
+- **LW (OPCODE: 100011)**
+ 
+- **SW (OPCODE: 101011)** 
     
-- **R-type:**  
+- **R-type (OPCODE: 000000):**  
   - ADD  
   - SUB  
   - AND  
   - OR  
   - SLT
   - 
-- **J-type:**  
+- **J-type: (OPCODE: 000010)**  
   - JMP
     
-- **B-type:**  
-  - BEQ  
-  - BNE  
+- **B-type: (OPCODE: 000100)**  
+  - BEQ
+    
 - **Custom:**  
   - RSWP
  
