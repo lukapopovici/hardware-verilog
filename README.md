@@ -6,7 +6,7 @@
 
 # Procesor MIPS Single-Cycle
 
-[Aici](https://github.com/lukapopovici/hardware-verilog/tree/main/SingleCycle) poate fi gasita implementarea unui procesor MIPS single-cycle in Verilog. 
+[Aici](https://github.com/lukapopovici/hardware-verilog/tree/main/SINGLE_CYCLE) poate fi gasita implementarea unui procesor MIPS single-cycle in Verilog. 
 
 
 ### Schema:
@@ -93,3 +93,7 @@ Registrele destinate swapului sunt date in urmatorii 10 biti. Restul pot avea va
 
 Exemplu de utilizare swap intre registrul 1 si 2.
 
+
+## Alte circuite de interes
+
+[Circuite ALU](https://github.com/lukapopovici/hardware-verilog/tree/main/ALU_EXECUTE)
