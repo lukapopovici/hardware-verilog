@@ -70,7 +70,7 @@ Bancul de registre e definit in modulul RB si sunt initializate cu valoarea 0, d
   - AND  
   - OR  
   - SLT
-  - 
+  
 - **J-type: (OPCODE: 000010)**  
   - JMP
     
